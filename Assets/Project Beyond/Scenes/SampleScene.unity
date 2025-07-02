@@ -238,7 +238,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15212345, y: 0.000000021401501, z: -0.0000000032940073, w: 0.98836154}
+  m_LocalRotation: {x: 0.1521234, y: 0.000000018507842, z: -0.0000000028486298, w: 0.98836154}
   m_LocalPosition: {x: 0, y: 3.503529, z: -4.7685847}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -975,7 +975,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2115395599}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15212345, y: 0.000000021401501, z: -0.0000000032940082, w: 0.98836154}
+  m_LocalRotation: {x: 0.1521234, y: 0.000000018507842, z: -0.0000000028486298, w: 0.98836154}
   m_LocalPosition: {x: 0, y: 3.503529, z: -4.7685847}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1183,27 +1183,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CollideAgainst:
     serializedVersion: 2
-    m_Bits: 4294967295
-  IgnoreTag: 
+    m_Bits: 1
+  IgnoreTag: Player
   TransparentLayers:
     serializedVersion: 2
-    m_Bits: 0
-  MinimumDistanceFromTarget: 0.3
+    m_Bits: 2
+  MinimumDistanceFromTarget: 0.4
   AvoidObstacles:
     Enabled: 1
     DistanceLimit: 0
     MinimumOcclusionTime: 0
     CameraRadius: 0.4
     UseFollowTarget:
-      Enabled: 0
+      Enabled: 1
       YOffset: 0
-    Strategy: 0
+    Strategy: 2
     MaximumEffort: 4
-    SmoothingTime: 0
-    Damping: 0.4
-    DampingWhenOccluded: 0.2
+    SmoothingTime: 0.4
+    Damping: 0.8
+    DampingWhenOccluded: 0.4
   ShotQualityEvaluation:
-    Enabled: 0
+    Enabled: 1
     OptimalDistance: 10
     NearLimit: 5
     FarLimit: 30
