@@ -1,16 +1,28 @@
 using UnityEngine;
+using Unity.Cinemachine;
+using UnityEngine.InputSystem;
 
-public class PBPlayerController : MonoBehaviour
+public class PBPlayerCamera : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public CinemachineCamera ThirdPerson;
+    public CinemachineCamera Isometric;
+    
+    [Header("Input Keys")]
+    public Key SwitchToThirdPersonKey = Key.Digit1;
+    public Key SwitchToIsometricKey = Key.Digit2;
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        var keyboard = Keyboard.current;
         
+        if (keyboard[SwitchToThirdPersonKey].wasPressedThisFrame)
+        {
+            PBCameraManager.SwitchCamera(ThirdPerson);
+        }
+
+        if (keyboard[SwitchToIsometricKey].wasPressedThisFrame)
+        {
+            PBCameraManager.SwitchCamera(Isometric);
+        }
     }
 }
