@@ -5,10 +5,11 @@ using UnityEngine.InputSystem;
 
 public class NewMonoBehaviourScript : MonoBehaviour
 {
-
+    [SerializeField] private Transform cameraTransform;
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpHeight = 2f;
     [SerializeField] private float gravity = -9.8f;
+    [SerializeField] private bool shouldFaceMoveDirection = false; 
 
     private CharacterController controller;
     private UnityEngine.Vector3 moveInput;
@@ -40,8 +41,23 @@ public class NewMonoBehaviourScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UnityEngine.Vector3 move = new UnityEngine.Vector3(moveInput.x, 0, moveInput.y);
-        controller.Move(move * speed * Time.deltaTime); 
+        UnityEngine.Vector3 forward = cameraTransform.forward;
+        UnityEngine.Vector3 right = cameraTransform.right;
+
+        forward.y = 0;
+        right.y = 0;
+
+        forward.Normalize();
+        right.Normalize();
+
+        UnityEngine.Vector3 moveDirection = forward * moveInput.y + right * moveInput.x;
+        controller.Move(moveDirection * speed * Time.deltaTime);
+
+        if (shouldFaceMoveDirection && moveDirection.sqrMagnitude > 0.001)
+        {
+            UnityEngine.Quaternion toRotation = UnityEngine.Quaternion.LookRotation(moveDirection, UnityEngine.Vector3.up);
+            transform.rotation = UnityEngine.Quaternion.Slerp(transform.rotation, toRotation, 10f * Time.deltaTime);
+        }
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
